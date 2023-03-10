@@ -23,12 +23,23 @@
 
 <% end %>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@user.errors.count, "error") %>:</h3>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: @user do |form| %>
   <%= form.label :email, "Email:" %>
-  <%= form.email_field :email %>
+  <%= form.email_field :email %> <br>
   <%= form.label :username, "Username:" %>
-  <%= form.text_field :username %>
+  <%= form.text_field :username %> <br>
   <%= form.label :password, "Password:" %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password %> <br>
   <%= form.submit "Submit" %>
 <% end %>
